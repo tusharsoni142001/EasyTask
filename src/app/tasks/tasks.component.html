@@ -1,1 +1,22 @@
-<h2>{{ name }}</h2>
+<section id="tasks">
+    <header>
+        <h2>{{ name }}'s Tasks</h2>
+        <menu>
+            <button (click)="addTaskCheck()">{{ showAddTask? 'Close ' : 'AddTask'}}</button>
+        </menu>
+    </header>
+
+    @if (showAddTask) {
+        <app-new-task (cancel)="onCancelAddTask()"></app-new-task>
+    }
+    @for(task of selectedUserTasks; track task.id){
+        <ul>
+            <li>
+                <app-task [task]="task" (complete)="onCompleteTask($event)"/>
+            </li>
+        </ul>
+    }
+    
+</section>
+
+
